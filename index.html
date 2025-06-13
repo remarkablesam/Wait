@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Know Empire Waitlist</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: #181025;
+      color: #fff;
+      font-family: 'Space Mono', monospace;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 16px 0 16px;
+    }
+    .header .left, .header .right {
+      display: flex;
+      align-items: center;
+    }
+    .header .cancel {
+      color: #fff;
+      opacity: 0.7;
+      font-size: 1.1em;
+      margin-right: 18px;
+      cursor: pointer;
+    }
+    .header .drafts {
+      color: #a78bfa;
+      margin-right: 12px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .header .cast-btn {
+      background: #a78bfa;
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 8px 24px;
+      font-size: 1em;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .profile-row {
+      display: flex;
+      align-items: center;
+      margin: 28px 0 18px 18px;
+    }
+    .profile-row img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      margin-right: 14px;
+      border: 2px solid #fff2;
+    }
+    .profile-row .waitlist-text {
+      font-size: 1.1em;
+      color: #fff;
+      letter-spacing: 0.01em;
+    }
+    .waitlist-card {
+      background: #181025;
+      border-radius: 18px;
+      margin: 0 auto 18px auto;
+      max-width: 95vw;
+      width: 95vw;
+      box-shadow: 0 2px 16px #0004;
+      padding: 0;
+      position: relative;
+    }
+    .waitlist-card .close-btn {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: #231a36;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      font-size: 1.2em;
+      cursor: pointer;
+      opacity: 0.8;
+    }
+    .waitlist-card .brand {
+      position: absolute;
+      top: 18px;
+      left: 54px;
+      color: #fff;
+      font-weight: bold;
+      font-size: 1.1em;
+      opacity: 0.9;
+    }
+    .waitlist-card .refresh-btn {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: #231a36;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      font-size: 1.2em;
+      cursor: pointer;
+      opacity: 0.8;
+    }
+    .waitlist-card .main-content {
+      padding: 60px 24px 24px 24px;
+      text-align: left;
+    }
+    .waitlist-card .main-content h2 {
+      font-size: 2em;
+      margin: 0 0 8px 0;
+      color: #fff;
+      font-weight: bold;
+      line-height: 1.1;
+    }
+    .waitlist-card .main-content h2 .highlight {
+      color: #a78bfa;
+    }
+    .waitlist-card .main-content p {
+      color: #fff;
+      opacity: 0.8;
+      margin: 0 0 18px 0;
+      font-size: 1.1em;
+    }
+    .waitlist-card .main-content .join-btn {
+      display: block;
+      margin: 0 auto 0 auto;
+      background: #fff;
+      color: #181025;
+      border: none;
+      border-radius: 16px;
+      padding: 12px 36px;
+      font-size: 1.2em;
+      font-family: inherit;
+      font-weight: bold;
+      letter-spacing: 0.05em;
+      box-shadow: 0 2px 8px #0002;
+      cursor: pointer;
+      border: 2px solid #a78bfa;
+      transition: background 0.2s, color 0.2s;
+    }
+    .waitlist-card .main-content .join-btn:hover {
+      background: #a78bfa;
+      color: #fff;
+    }
+    .waitlist-card .beta-bar {
+      background: #2d223e;
+      color: #fff;
+      border-radius: 0 0 18px 18px;
+      padding: 16px;
+      text-align: center;
+      font-size: 1.1em;
+      font-weight: bold;
+      letter-spacing: 0.01em;
+      margin-top: 12px;
+    }
+    /* Bottom nav */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100vw;
+      background: #181025;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px 18px 16px;
+      z-index: 10;
+    }
+    .bottom-nav .nav-icons {
+      display: flex;
+      gap: 8px;
+    }
+    .bottom-nav .nav-icon {
+      background: #231a36;
+      border-radius: 16px;
+      padding: 6px 12px;
+      color: #fff;
+      font-size: 1.1em;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      opacity: 0.9;
+      border: none;
+      cursor: pointer;
+    }
+    .bottom-nav .plus-btn {
+      background: #a78bfa;
+      color: #fff;
+      border-radius: 50%;
+      width: 38px;
+      height: 38px;
+      font-size: 1.6em;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 8px;
+      cursor: pointer;
+    }
+    /* Whitelist confirmation */
+    .whitelist-confirm {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: #000;
+      color: #fff;
+      font-family: 'Space Mono', monospace;
+      text-align: center;
+    }
+    .whitelist-confirm .logo {
+      margin: 60px 0 24px 0;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      border: 6px solid #fff;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .whitelist-confirm .logo::after {
+      content: '';
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 6px solid #fff;
+      background: transparent;
+    }
+    .whitelist-confirm h1 {
+      font-size: 2em;
+      margin: 32px 0 12px 0;
+      font-weight: bold;
+      letter-spacing: 0.04em;
+    }
+    .whitelist-confirm p {
+      color: #bcbcbc;
+      font-size: 1.1em;
+      margin-bottom: 32px;
+    }
+    .whitelist-confirm .share-btn {
+      background: #ff9100;
+      color: #fff;
+      border: 2px solid #ff9100;
+      border-radius: 18px;
+      padding: 12px 36px;
+      font-size: 1.1em;
+      font-family: inherit;
+      font-weight: bold;
+      margin-bottom: 48px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .whitelist-confirm .share-btn:hover {
+      background: #fff;
+      color: #ff9100;
+    }
+    .whitelist-confirm .footer {
+      color: #bcbcbc;
+      font-size: 1em;
+      margin-top: 48px;
+      opacity: 0.7;
+    }
+    .whitelist-confirm .footer .heart {
+      color: #ff3b3b;
+      font-size: 1.1em;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+  <!-- Top bar
+  <div class="header">
+    <div class="left">
+      <span class="cancel">Cancel</span>
+    </div>
+    <div class="right">
+      <span class="drafts">Drafts</span>
+      <button class="cast-btn">Cast</button>
+    </div>
+  </div> -->
+
+  <!-- Profile row -->
+  <!-- <div class="profile-row">
+    <img src="IMG-20250601-WA0018.jpg" alt="Profile"> -->
+    <!-- <span class="waitlist-text"><h2>Know Empire 🧬🧬</h2></span> -->
+  </div>
+
+  <!-- Waitlist card -->
+  <div class="waitlist-card">
+    <!-- <button class="close-btn">&times;</button> -->
+    <span class="brand">Know Empire</span>
+    <!-- <button class="refresh-btn">&#8635;</button> -->
+    <div class="main-content">
+      <h2>Turn Healthy Habits into <span class="highlight">Rewards</span></h2>
+      <p>Track ✦ Challenge ✦ Earn</p>
+      <button class="join-btn" onclick="showWhitelist()">JOIN NOW!</button>
+    </div>
+    <div class="beta-bar">Join Know Empire Beta Test</div>
+  </div>
+
+  <!-- Whitelist confirmation (hidden by default) -->
+  <div class="whitelist-confirm" id="whitelistConfirm" style="display:none;">
+    <div class="logo"></div>
+    <h1>You are on the Whitelist!</h1>
+    <p>We will notify you when we launch.</p>
+    <button class="share-btn">Share Frame</button>
+    <div class="footer">
+      built with <span class="heart">❤</span> during ETH Denver
+    </div>
+  </div>
+
+  <!-- Bottom nav -->
+  <!-- <div class="bottom-nav">
+    <div class="nav-icons">
+      <button class="nav-icon"><span>🏠</span></button>
+      <button class="nav-icon"><span>⚡</span></button>
+      <button class="nav-icon"><span>degen</span></button>
+      <button class="nav-icon"><span>sense</span></button>
+      <button class="nav-icon"><span>itookaphoto</span></button>
+    </div>
+    <button class="plus-btn">+</button>
+  </div> -->
+
+  <script>
+    function showWhitelist() {
+      document.querySelector('.waitlist-card').style.display = 'none';
+      document.getElementById('whitelistConfirm').style.display = 'flex';
+    }
+  </script>
+</body>
+  </html>
