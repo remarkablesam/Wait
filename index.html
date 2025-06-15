@@ -321,7 +321,7 @@
     <div class="logo"></div>
     <h1>You are on the Whitelist!</h1>
     <p>We will notify you when we launch.</p>
-    <button class="share-btn">Share Frame</button>
+    <button class="share-btn" onclick="shareOnFarcaster()">Share Frame</button>
     <div class="footer">
       built with <span class="heart">❤</span> during ETH Denver
     </div>
@@ -347,7 +347,7 @@
 
     function showInlineForm() {
       document.getElementById('waitlistFormArea').innerHTML = `
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSemaRBC5dQWf7aWViRlRWFsqT5PK4S0nxdUnIZHAcvttOSZ-A/viewform?embedded=true" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0" style="background:#fff;border-radius:12px;">Loading…</iframe>
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSemaRBC5dQWf7aWViRlRWFsqT5PK4S0nxdUnIZHAcvttOSZ-A/viewform?embedded=true" width="100%" height="400" frameborder="0" marginheight="0" marginwidth="0" style="background:#fff;border-radius:12px;">Loading…</iframe>
     <div style="text-align:center;margin-top:16px;">
       <button onclick="showWhitelist()" style="background:#a78bfa;color:#fff;border:none;border-radius:12px;padding:10px 24px;font-size:1em;cursor:pointer;">Done? See Confirmation</button>
     </div>
@@ -372,6 +372,11 @@
           alert('There was an error submitting your Farcaster ID. Please try again.');
         });
       }
+    }
+
+    function shareOnFarcaster() {
+      const text = encodeURIComponent("I'm on the Know Empire whitelist! 🚀 Join the beta: https://remarkablesam.github.io/Wait/");
+      window.open(`https://warpcast.com/~/compose?text=${text}`, '_blank');
     }
   </script>
 </body>
