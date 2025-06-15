@@ -303,12 +303,15 @@
   <!-- Waitlist card -->
   <div class="waitlist-card">
     <!-- <button class="close-btn">&times;</button> -->
-    <span class="brand">Know Empire</span>
+    <span class="brand">KnowEmpire</span>
     <!-- <button class="refresh-btn">&#8635;</button> -->
     <div class="main-content">
-      <h2>Turn Healthy Habits into <span class="highlight">Rewards</span></h2>
-      <p>Track ✦ Challenge ✦ Earn</p>
-      <button class="join-btn" onclick="showWhitelist()">JOIN NOW!</button>
+      <h2>The P2P Crypto-Native Marketplace <br>Where Physical Goods And Services Takes Place.<br> <br><span class="highlight">Rewards</span></h2>
+      <p>Trade ✦ Hire ✦ Earn</p>
+      <em><h3>Beta Access Now Live</h3></em>
+      <div id="waitlistFormArea">
+        <button class="join-btn" onclick="showInlineForm()">JOIN NOW!</button>
+      </div>
     </div>
     <div class="beta-bar">Join Know Empire Beta Test</div>
   </div>
@@ -341,6 +344,35 @@
       document.querySelector('.waitlist-card').style.display = 'none';
       document.getElementById('whitelistConfirm').style.display = 'flex';
     }
+
+    function showInlineForm() {
+      document.getElementById('waitlistFormArea').innerHTML = `
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSemaRBC5dQWf7aWViRlRWFsqT5PK4S0nxdUnIZHAcvttOSZ-A/viewform?embedded=true" width="100%" height="400" frameborder="0" marginheight="0" marginwidth="0" style="background:#fff;border-radius:12px;">Loading…</iframe>
+    <div style="text-align:center;margin-top:16px;">
+      <button onclick="showWhitelist()" style="background:#a78bfa;color:#fff;border:none;border-radius:12px;padding:10px 24px;font-size:1em;cursor:pointer;">Done? See Confirmation</button>
+    </div>
+  `;
+    }
+
+    function submitFarcasterId(event) {
+      event.preventDefault();
+      const farcasterId = document.getElementById('farcasterIdInput').value.trim();
+      if (farcasterId) {
+        // Send Farcaster ID to your backend (replace URL with your endpoint)
+        fetch('https://your-backend.com/api/waitlist', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ farcasterId })
+        })
+        .then(response => {
+          document.querySelector('.waitlist-card').style.display = 'none';
+          document.getElementById('whitelistConfirm').style.display = 'flex';
+        })
+        .catch(error => {
+          alert('There was an error submitting your Farcaster ID. Please try again.');
+        });
+      }
+    }
   </script>
 </body>
-  </html>
+</html>
